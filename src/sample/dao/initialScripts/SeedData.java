@@ -4,6 +4,7 @@ import java.sql.*;
 
 public class SeedData {
     public static void main(String[] args) throws SQLException {
+        //enter username and password as command line arguments
         String database_username = args[0];
         String database_password = args[1];
         Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/password_manager",database_username,database_password);
@@ -11,6 +12,10 @@ public class SeedData {
         script(connection);
     }
 
+    /**
+     * Creates users table, passwords table and inserts data into users table and passwords table
+     * @param connection Connection to the database
+     */
     public static void script(Connection connection){
         createUsersTable(connection);
         createPasswordsTable(connection);
@@ -18,6 +23,10 @@ public class SeedData {
         addSeedDataPasswordsTable(connection);
     }
 
+    /**
+     * Creates users table
+     * @param connection Connection to the database
+     */
     public static void createUsersTable(Connection connection) {
         Statement statement = null;
         try {
@@ -37,6 +46,10 @@ public class SeedData {
         }
     }
 
+    /**
+     * Adds seed data into users table
+     * @param connection Connection to the database
+     */
     public static void addSeedDataUsersTable(Connection connection){
         try {
             Statement statement = connection.createStatement();
@@ -55,6 +68,10 @@ public class SeedData {
 
     }
 
+    /**
+     * Creates passwords table
+     * @param connection Connection to the database
+     */
     public static void createPasswordsTable(Connection connection){
         try {
             Statement s = connection.createStatement();
@@ -77,6 +94,10 @@ public class SeedData {
         }
     }
 
+    /**
+     * Adds seed data into passwords table
+     * @param connection Connection to the database
+     */
     public static void addSeedDataPasswordsTable(Connection connection){
         try {
             String sql = "INSERT INTO passwords(user_id, label, username, password, notes) VALUES(?,?,?,?,?)";
@@ -114,6 +135,15 @@ public class SeedData {
         }
     }
 
+
+    /**
+     * This method allows inserting either null or String values into a prepared sql statement
+     * @param preparedStatement prepare sql statement that defines a structure for insert
+     * @param parameterIndex index at which you want to insert value into sql statement
+     * @param tuple data in String array
+     * @param dataIndex index of data in String that is to be inserted
+     * @throws SQLException yes
+     */
     private static void insertNullHelper(PreparedStatement preparedStatement,  int parameterIndex, String[] tuple, int dataIndex) throws SQLException {
         if(tuple[dataIndex] == null){
             preparedStatement.setNull(parameterIndex,Types.NULL);
