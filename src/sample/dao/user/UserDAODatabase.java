@@ -5,7 +5,7 @@ import sample.model.User;
 
 import java.sql.SQLException;
 
-public class UserDAODatabase extends AbstractDatabaseDAO implements UserDAO{
+public class UserDAODatabase extends AbstractDatabaseDAO<Integer,User> implements UserDAO{
 
     protected UserDAODatabase() throws SQLException {
         super();
