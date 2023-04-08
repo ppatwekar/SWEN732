@@ -1,16 +1,11 @@
 package sample.dao.user;
 
+import sample.dao.DAO;
 import sample.model.User;
 
-public interface UserDAO {
-    User createNewUser(User user);
+public interface UserDAO extends DAO<Integer,User> {
 
     User getUserByEmail(String email);
-    User getUserById(int id);
 
-    User updateUser(User user);
-
-    User deleteUser(int id);
-    User deleteUser(User user);
     User deleteUser(String email);
 }
