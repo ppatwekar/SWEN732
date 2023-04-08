@@ -1,10 +1,15 @@
 package sample.model;
 
+import java.util.List;
+
 public class User {
     //email of user
     private String email;
     //master password of the user
     private String master_password;
+
+    //passwords of the user
+    private List<PasswordLabel> passwordLabelList;
 
     public User(){
 
