@@ -1,4 +1,4 @@
-package sample.dao.user;
+package sample.dao;
 
 import sample.dao.DBConnectionSingleton;
 

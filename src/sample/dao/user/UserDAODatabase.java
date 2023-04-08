@@ -1,5 +1,6 @@
 package sample.dao.user;
 
+import sample.dao.AbstractDatabaseDAO;
 import sample.model.User;
 
 public class UserDAODatabase extends AbstractDatabaseDAO implements UserDAO{
