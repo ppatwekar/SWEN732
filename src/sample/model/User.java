@@ -38,18 +38,34 @@ public class User {
         this.passwordLabelList = new ArrayList<>();
     }
 
+    /**
+     *
+     * @return email of user
+     */
     public String getEmail() {
         return email;
     }
 
+    /**
+     *
+     * @param email sets email of user
+     */
     public void setEmail(String email) {
         this.email = email;
     }
 
+    /**
+     *
+     * @return master password of the user
+     */
     public String getMaster_password() {
         return master_password;
     }
 
+    /**
+     *
+     * @param master_password used to update the user's master password
+     */
     public void setMaster_password(String master_password) {
         this.master_password = master_password;
     }
