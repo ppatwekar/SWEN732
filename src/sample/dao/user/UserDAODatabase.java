@@ -57,12 +57,13 @@ public class UserDAODatabase extends AbstractDatabaseDAO<Integer,User> implement
 
     @Override
     public User deleteObjectById(Integer integer) {
-        return null;
+        String sql = "DELETE FROM users WHERE id="+integer+";";
+        return this.getUserObjectBySingleUserStatement(sql);
     }
 
     @Override
     public User deleteObject(User obj) {
-        return null;
+        return this.deleteUser(obj.getEmail());
     }
 
     /**
