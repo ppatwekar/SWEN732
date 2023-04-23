@@ -44,7 +44,8 @@ public class UserDAODatabase extends AbstractDatabaseDAO<Integer,User> implement
 
     @Override
     public User getObjectById(Integer integer) {
-        return null;
+        String sql = "SELECT * FROM users WHERE id="+integer+";";
+        return this.getUserObjectBySingleUserStatement(sql);
     }
 
     @Override
