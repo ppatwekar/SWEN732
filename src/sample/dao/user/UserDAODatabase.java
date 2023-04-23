@@ -50,7 +50,9 @@ public class UserDAODatabase extends AbstractDatabaseDAO<Integer,User> implement
 
     @Override
     public User updateObject(User obj) {
-        return null;
+        String sql = "UPDATE users SET master_password="+obj.getMaster_password()+" WHERE " +
+                "email="+obj.getEmail()+";";
+        return this.getUserObjectBySingleUserStatement(sql);
     }
 
     @Override
