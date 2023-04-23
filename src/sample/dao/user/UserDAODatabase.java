@@ -15,36 +15,14 @@ public class UserDAODatabase extends AbstractDatabaseDAO<Integer,User> implement
 
     @Override
     public User getUserByEmail(String email) {
-        User u = null;
-        try {
-            Statement s = this.connection.createStatement();
-            String sql = "SELECT * FROM users WHERE email="+email+";";
-
-            ResultSet resultSet = s.executeQuery(sql);
-
-            u = this.getUserGivenResultSet(resultSet);
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return u;
+        String sql = "SELECT * FROM users WHERE email="+email+";";
+        return this.getUserObjectBySingleUserStatement(sql);
     }
 
     @Override
     public User deleteUser(String email) {
-        User u = null;
-        try {
-            Statement s = this.connection.createStatement();
-            String sql = "DELETE FROM users WHERE email="+email+";";
-
-            ResultSet resultSet = s.executeQuery(sql);
-
-            u = this.getUserGivenResultSet(resultSet);
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return u;
+        String sql = "DELETE FROM users WHERE email="+email+";";
+        return this.getUserObjectBySingleUserStatement(sql);
     }
 
     @Override
@@ -72,10 +50,35 @@ public class UserDAODatabase extends AbstractDatabaseDAO<Integer,User> implement
         return null;
     }
 
+    /**
+     *
+     * @param userResultSet ResultSet that contains only 1 user
+     * @return User object from ResultSet
+     * @throws SQLException yeah
+     */
     private User getUserGivenResultSet(ResultSet userResultSet) throws SQLException {
         String em = userResultSet.getString("email");
         String masterPass = userResultSet.getString("master_password");
 
         return new User(em, masterPass);
+    }
+
+    /**
+     * Can be used to get/update/create/delete a single user based on an sql statement
+     * @param sql sql statement
+     * @return User object
+     */
+    private User getUserObjectBySingleUserStatement(String sql){
+        User u = null;
+        try {
+            Statement s = this.connection.createStatement();
+            ResultSet resultSet = s.executeQuery(sql);
+
+            u = this.getUserGivenResultSet(resultSet);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return u;
     }
 }
