@@ -27,7 +27,19 @@ public class UserDAODatabase extends AbstractDatabaseDAO<Integer,User> implement
 
     @Override
     public User createNew(User obj) {
-        return null;
+        String sql = "INSERT INTO users(email, master_password) " +
+                "VALUES "+String.format("(%s, %s)",obj.getEmail(),obj.getMaster_password())
+                +";";
+
+        try {
+            Statement s = this.connection.createStatement();
+            s.executeUpdate(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+
+        return obj;
     }
 
     @Override
@@ -64,7 +76,7 @@ public class UserDAODatabase extends AbstractDatabaseDAO<Integer,User> implement
     }
 
     /**
-     * Can be used to get/update/create/delete a single user based on an sql statement
+     * Can be used to get/update/delete a single user based on an sql statement
      * @param sql sql statement
      * @return User object
      */
