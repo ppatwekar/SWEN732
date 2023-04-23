@@ -19,12 +19,11 @@ public class UserDAODatabase extends AbstractDatabaseDAO<Integer,User> implement
         try {
             Statement s = this.connection.createStatement();
             String sql = "SELECT * FROM users WHERE email="+email+";";
+
             ResultSet resultSet = s.executeQuery(sql);
-            while (resultSet.next()){
-               String em = resultSet.getString("email");
-               String masterPass = resultSet.getString("master_password");
-               u = new User(em,masterPass);
-            }
+
+            u = this.getUserGivenResultSet(resultSet);
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -33,7 +32,19 @@ public class UserDAODatabase extends AbstractDatabaseDAO<Integer,User> implement
 
     @Override
     public User deleteUser(String email) {
-        return null;
+        User u = null;
+        try {
+            Statement s = this.connection.createStatement();
+            String sql = "DELETE FROM users WHERE email="+email+";";
+
+            ResultSet resultSet = s.executeQuery(sql);
+
+            u = this.getUserGivenResultSet(resultSet);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return u;
     }
 
     @Override
@@ -59,5 +70,12 @@ public class UserDAODatabase extends AbstractDatabaseDAO<Integer,User> implement
     @Override
     public User deleteObject(User obj) {
         return null;
+    }
+
+    private User getUserGivenResultSet(ResultSet userResultSet) throws SQLException {
+        String em = userResultSet.getString("email");
+        String masterPass = userResultSet.getString("master_password");
+
+        return new User(em, masterPass);
     }
 }
