@@ -3,7 +3,9 @@ package sample.dao.user;
 import sample.dao.AbstractDatabaseDAO;
 import sample.model.User;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class UserDAODatabase extends AbstractDatabaseDAO<Integer,User> implements UserDAO{
 
@@ -13,7 +15,20 @@ public class UserDAODatabase extends AbstractDatabaseDAO<Integer,User> implement
 
     @Override
     public User getUserByEmail(String email) {
-        return null;
+        User u = null;
+        try {
+            Statement s = this.connection.createStatement();
+            String sql = "SELECT * FROM users WHERE email="+email+";";
+            ResultSet resultSet = s.executeQuery(sql);
+            while (resultSet.next()){
+               String em = resultSet.getString("email");
+               String masterPass = resultSet.getString("master_password");
+               u = new User(em,masterPass);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return u;
     }
 
     @Override
