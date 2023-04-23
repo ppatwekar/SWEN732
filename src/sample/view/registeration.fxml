@@ -2,14 +2,14 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.RegistrationController">
    <children>
-      <TextField layoutX="236.0" layoutY="120.0" prefHeight="25.0" prefWidth="298.0" />
+      <TextField fx:id="userEmailTextField" layoutX="236.0" layoutY="120.0" prefHeight="25.0" prefWidth="298.0" promptText="email@email.com" />
       <Label layoutX="255.0" layoutY="35.0" prefHeight="50.0" prefWidth="92.0" text="Registration">
          <font>
             <Font size="18.0" />
@@ -21,7 +21,8 @@
          </font>
       </Label>
       <Label layoutX="99.0" layoutY="192.0" text="Password" />
-      <TextField layoutX="236.0" layoutY="188.0" prefHeight="25.0" prefWidth="298.0" />
-      <Button layoutX="228.0" layoutY="303.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="147.0" text="Register" />
+      <Button fx:id="registerButton" layoutX="228.0" layoutY="269.0" mnemonicParsing="false" onAction="#registerButtonOnAction" prefHeight="25.0" prefWidth="147.0" text="Register" />
+      <Button fx:id="closeButtonRegisterScreen" layoutX="228.0" layoutY="330.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="147.0" text="Close" />
+      <PasswordField fx:id="userPasswordTextField" layoutX="235.0" layoutY="197.0" prefHeight="25.0" prefWidth="298.0" promptText="password" />
    </children>
 </AnchorPane>
