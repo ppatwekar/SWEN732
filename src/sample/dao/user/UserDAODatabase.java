@@ -28,8 +28,7 @@ public class UserDAODatabase extends AbstractDatabaseDAO<Integer,User> implement
     @Override
     public User createNew(User obj) {
         String sql = "INSERT INTO users(email, master_password) " +
-                "VALUES "+String.format("(%s, %s)",obj.getEmail(),obj.getMaster_password())
-                +";";
+                "VALUES "+String.format("(\"%s\", \"%s\");",obj.getEmail(),obj.getMaster_password());
 
         try {
             Statement s = this.connection.createStatement();
@@ -73,11 +72,12 @@ public class UserDAODatabase extends AbstractDatabaseDAO<Integer,User> implement
      * @throws SQLException yeah
      */
     private User getUserGivenResultSet(ResultSet userResultSet) throws SQLException {
-        System.out.println(userResultSet.next());
-        String em = userResultSet.getString("email");
-        String masterPass = userResultSet.getString("master_password");
-
-        return new User(em, masterPass);
+        if(userResultSet.next()){
+            String em = userResultSet.getString("email");
+            String masterPass = userResultSet.getString("master_password");
+            return new User(em, masterPass);
+        }
+        return null;
     }
 
     /**

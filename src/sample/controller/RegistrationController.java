@@ -9,6 +9,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.PasswordField;
 import sample.dao.user.UserDAO;
 import sample.dao.user.UserDAODatabase;
+import sample.model.User;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -29,8 +30,11 @@ public class RegistrationController implements Initializable{
     @FXML
     private TextField userEmailTextField;
 
+    @FXML private Label userAlreadyExists;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        this.userAlreadyExists.setText("");
         try {
             this.userDAO = new UserDAODatabase();
         } catch (SQLException e) {
@@ -47,10 +51,16 @@ public class RegistrationController implements Initializable{
 
         if(!email.equals("") && !password.equals("")){
             if(this.userDAO.getUserByEmail(email) !=null){
-                System.out.println("exists bro");
+                this.userAlreadyExists.setText("User Already Exists");
             }
             else{
-                System.out.println("ok");
+                User u = new User(email, password);
+                if(this.userDAO.createNew(u) != null){
+                    this.userAlreadyExists.setText("Registered successfully!");
+                }
+                else{
+                    this.userAlreadyExists.setText("User not registered!");
+                }
             }
         }
     }
