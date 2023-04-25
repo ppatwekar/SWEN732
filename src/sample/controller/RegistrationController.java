@@ -2,15 +2,20 @@ package sample.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.PasswordField;
+import javafx.stage.Stage;
 import sample.dao.user.UserDAO;
 import sample.dao.user.UserDAODatabase;
 import sample.model.User;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -65,4 +70,16 @@ public class RegistrationController implements Initializable{
         }
     }
 
+    public void returnToLoginScreen(ActionEvent actionEvent) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("../view/login.fxml"));
+            Stage loginStage = new Stage();
+            loginStage.setScene(new Scene(root,520,567));
+            loginStage.show();
+
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+
+    }
 }

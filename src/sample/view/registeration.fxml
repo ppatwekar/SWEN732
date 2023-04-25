@@ -22,9 +22,9 @@
       </Label>
       <Label layoutX="99.0" layoutY="192.0" text="Password" />
       <Button fx:id="registerButton" layoutX="228.0" layoutY="269.0" mnemonicParsing="false" onAction="#registerButtonOnAction" prefHeight="25.0" prefWidth="147.0" text="Register" />
-      <Button fx:id="closeButtonRegisterScreen" layoutX="228.0" layoutY="330.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="147.0" text="Close" />
+      <Button fx:id="closeButtonRegisterScreen" layoutX="228.0" layoutY="330.0" mnemonicParsing="false" onAction="#returnToLoginScreen" prefHeight="25.0" prefWidth="147.0" text="Close" />
       <PasswordField fx:id="userPasswordTextField" layoutX="235.0" layoutY="197.0" prefHeight="25.0" prefWidth="298.0" promptText="password" />
-      <Label fx:id="userAlreadyExists" layoutX="247.0" layoutY="85.0" prefHeight="18.0" prefWidth="179.0" text="User Already Exists!!">
+      <Label fx:id="userAlreadyExists" layoutX="247.0" layoutY="85.0" prefHeight="18.0" prefWidth="230.0" text="User Already Exists!!">
          <font>
             <Font size="14.0" />
          </font>
