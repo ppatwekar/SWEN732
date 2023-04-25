@@ -7,8 +7,8 @@ import java.sql.SQLException;
 public class DBConnectionSingleton {
     private static Connection connection;
     private DBConnectionSingleton() throws SQLException {
-        String username = "";
-        String password = "";
+        String username = "root";
+        String password = "root@123";
         DBConnectionSingleton.connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/password_manager",username,password);
     }
 

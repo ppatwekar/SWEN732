@@ -9,13 +9,13 @@ import java.sql.Statement;
 
 public class UserDAODatabase extends AbstractDatabaseDAO<Integer,User> implements UserDAO{
 
-    protected UserDAODatabase() throws SQLException {
+    public UserDAODatabase() throws SQLException {
         super();
     }
 
     @Override
     public User getUserByEmail(String email) {
-        String sql = "SELECT * FROM users WHERE email="+email+";";
+        String sql = "SELECT * FROM users WHERE email='"+email+"';";
         return this.getUserObjectBySingleUserStatement(sql);
     }
 
@@ -73,6 +73,7 @@ public class UserDAODatabase extends AbstractDatabaseDAO<Integer,User> implement
      * @throws SQLException yeah
      */
     private User getUserGivenResultSet(ResultSet userResultSet) throws SQLException {
+        System.out.println(userResultSet.next());
         String em = userResultSet.getString("email");
         String masterPass = userResultSet.getString("master_password");
 
