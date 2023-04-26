@@ -40,4 +40,6 @@ public interface DAO<K,T> {
      * @return deleted Object
      */
     T deleteObject(T obj);
+
+    K getId(T obj);
 }

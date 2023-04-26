@@ -8,4 +8,5 @@ public interface UserDAO extends DAO<Integer,User> {
     User getUserByEmail(String email);
 
     User deleteUser(String email);
+
 }

@@ -73,6 +73,20 @@ public class UserDAODatabase extends AbstractDatabaseDAO<Integer,User> implement
         return this.deleteUser(obj.getEmail());
     }
 
+    @Override
+    public Integer getId(User obj) {
+        String sql = "SELECT * FROM users WHERE email='"+obj.getEmail()+"';";
+        try{
+            Statement s = this.connection.createStatement();
+            ResultSet resultSet = s.executeQuery(sql);
+
+            return resultSet.next() ? resultSet.getInt("id") : null;
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     /**
      *
      * @param userResultSet ResultSet that contains only 1 user

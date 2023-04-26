@@ -18,6 +18,7 @@ public class PasswordDAODatabase extends AbstractDatabaseDAO<Integer, PasswordLa
 
     private PasswordDAODatabase() throws SQLException {
         super();
+        this.userDAO = UserDAODatabase.getInstance();
     }
 
     public static PasswordDAODatabase getInstance() throws SQLException {
@@ -54,7 +55,13 @@ public class PasswordDAODatabase extends AbstractDatabaseDAO<Integer, PasswordLa
     }
 
     @Override
+    public Integer getId(PasswordLabel obj) {
+        return null;
+    }
+
+    @Override
     public List<PasswordLabel> getAllPasswordLabelObjectsByUserId(Integer userId) {
         return null;
     }
+
 }
