@@ -5,6 +5,7 @@ import sample.dao.DAO;
 import sample.dao.user.UserDAO;
 import sample.dao.user.UserDAODatabase;
 import sample.model.PasswordLabel;
+import sample.model.User;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -30,6 +31,7 @@ public class PasswordDAODatabase extends AbstractDatabaseDAO<Integer, PasswordLa
 
     @Override
     public PasswordLabel createNew(PasswordLabel obj) {
+        //get user_id from CurrentSessionUser.userId
         String sql = "INSERT INTO passwords(user_id, label, username, password, notes) VALUES(?,?,?,?,?)";
         return null;
     }

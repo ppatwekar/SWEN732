@@ -7,5 +7,4 @@ import java.util.List;
 
 public interface PasswordTableDAO extends DAO<Integer, PasswordLabel> {
     List<PasswordLabel> getAllPasswordLabelObjectsByUserId(Integer userId);
-
 }
