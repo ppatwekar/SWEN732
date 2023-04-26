@@ -41,7 +41,7 @@ public class RegistrationController implements Initializable{
     public void initialize(URL location, ResourceBundle resources) {
         this.userAlreadyExists.setText("");
         try {
-            this.userDAO = new UserDAODatabase();
+            this.userDAO = UserDAODatabase.getInstance();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -67,6 +67,9 @@ public class RegistrationController implements Initializable{
                     this.userAlreadyExists.setText("User not registered!");
                 }
             }
+        }
+        else{
+            this.userAlreadyExists.setText("Fill all Fields!");
         }
     }
 

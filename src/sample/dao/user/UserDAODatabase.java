@@ -8,9 +8,17 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class UserDAODatabase extends AbstractDatabaseDAO<Integer,User> implements UserDAO{
+    private static UserDAODatabase userDAODatabase;
 
-    public UserDAODatabase() throws SQLException {
+    private UserDAODatabase() throws SQLException {
         super();
+    }
+
+    public static UserDAODatabase getInstance() throws SQLException {
+        if(UserDAODatabase.userDAODatabase == null){
+            UserDAODatabase.userDAODatabase = new UserDAODatabase();
+        }
+        return UserDAODatabase.userDAODatabase;
     }
 
     @Override
